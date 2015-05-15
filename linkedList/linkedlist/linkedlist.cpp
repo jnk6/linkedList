@@ -130,7 +130,7 @@ type * linkedList<type>::removeAt(int index)
 		delete iterator->data;
 		delete iterator->next;
 		delete iterator->prev;
-
+		count--;
 		return typePtr;
 	}
 
@@ -149,7 +149,7 @@ type * linkedList<type>::removeAt(int index)
 		delete iterator->data;
 		delete iterator->next;
 		delete iterator->prev;
-
+		count--;
 		return typePtr;
 	}
 
@@ -177,6 +177,6 @@ type * linkedList<type>::removeAt(int index)
 	delete iterator->next;
 	delete iterator->prev;
 
-
-
+	count--;
+	return typePtr;
 }
