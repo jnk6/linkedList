@@ -1,0 +1,16 @@
+﻿Build started 5/14/2015 10:05:24 PM.
+     1>Project "c:\Users\Jonathan\documents\visual studio 2013\Projects\linkedlist\linkedlist\linkedlist.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Release\linkedlist.pch" /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
+         stdafx.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Release\linkedlist.pch" /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt linkedlist.cpp
+         linkedlist.cpp
+     1>c:\users\jonathan\documents\visual studio 2013\projects\linkedlist\linkedlist\linkedList.h(14): error C2143: syntax error : missing ';' before '*'
+                 c:\users\jonathan\documents\visual studio 2013\projects\linkedlist\linkedlist\linkedList.h(24) : see reference to class template instantiation 'linkedList<type>' being compiled
+     1>c:\users\jonathan\documents\visual studio 2013\projects\linkedlist\linkedlist\linkedList.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>linkedlist.cpp(23): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>Done Building Project "c:\Users\Jonathan\documents\visual studio 2013\Projects\linkedlist\linkedlist\linkedlist.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:03.11
