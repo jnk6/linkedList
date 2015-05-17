@@ -7,7 +7,6 @@
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	
 	return 0;
 }
 
@@ -17,8 +16,13 @@ linkedList<type>::linkedList(){
 	count = 0;
 }
 
+
 template <typename type>
-bool linkedList<type>::addHead(type e){
+bool linkedList<type>::addHead(type &e){
+
+	return insert(0, e);
+	//let's let insert handle all the insert logic
+	/*
 	if (!root){
 		Node node;
 		node.data = e;
@@ -34,10 +38,15 @@ bool linkedList<type>::addHead(type e){
 	root = &node;
 	count++;
 	return true;
+	*/
 }
 
 template <typename type> 
-bool linkedList<type>::addTail(type e){
+bool linkedList<type>::addTail(type &e){
+
+	return insert(count - 1, e);
+	//Same  as addHead(), let insert() handle insert
+	/*
 	if (!root){
 		addHead(e);
 		count++;
@@ -60,10 +69,18 @@ bool linkedList<type>::addTail(type e){
 	leaf = &node;
 	count++;
 	return true;
+	*/
+}
+
+//same as addTail()
+template <typename type>
+bool linkedList<type> ::add(type &e)
+{
+	return insert(count - 1, e);
 }
 
 template<typename type>
-type * linkedList<type>::getHead()
+type & linkedList<type>::getHead()
 {
 	if (!(size() > 0))
 	{
@@ -83,7 +100,7 @@ type * linkedList<type>::getHead()
 }
 
 template<typename type>
-type * linkedList<type>::getTail()
+type & linkedList<type>::getTail()
 {
 	if (!(size() > 0))
 	{
@@ -107,8 +124,9 @@ int linkedList<type>::size()
 }
 
 template<typename type>
-type * linkedList<type>::removeAt(int index)
+type & linkedList<type>::removeAt(int index)
 {
+
 	//out of bounds
 	if (index >= count || index<0)
 	{
@@ -122,8 +140,17 @@ type * linkedList<type>::removeAt(int index)
 			return NULL;
 
 		iterator = root;
-		root = iterator->next;
-		root->prev = NULL;
+
+		//if root has no next, then set it to NULL
+		if (!iterator->next)
+		{
+			root = NULL;
+		}
+		else
+		{
+			root = iterator->next;
+			root->prev = NULL; // the previous root no longer exists, set the new root prev to NULL		
+		}
 
 		//deconstruct the node
 		type *typePtr = iterator->data;
@@ -141,8 +168,17 @@ type * linkedList<type>::removeAt(int index)
 			return NULL;
 
 		iterator = leaf;
-		leaf = iterator->prev;
-		leaf.next = NULL;
+
+		//if tail has no previous, then set it to NULL - this should never happen!
+		if (!iterator->prev)
+		{
+			leaf = NULL;
+		}
+		else 
+		{
+			leaf = iterator->prev;
+			leaf.next = NULL;
+		}
 
 		//deconstruct the node
 		type *typePtr = iterator->data;
@@ -154,8 +190,9 @@ type * linkedList<type>::removeAt(int index)
 	}
 
 	int offset;
+	bool closerToHead = (size() / 2 > index);
 	//find out if it's closer to the tail or head
-	if (count / 2 > index) //closer to the head
+	if (closerToHead) //closer to the head
 	{
 		iterator = getHead();
 		offset = index;
@@ -163,13 +200,17 @@ type * linkedList<type>::removeAt(int index)
 	else
 	{
 		iterator = getTail();
-		offset = count - index;
+		offset = size() - 1 - index;
 	}
 
 	for (int i = 0; i < offset; ++i)
 	{
-		iterator = (count / 2 > index) ? iterator->next : iterator->prev;
+		iterator = (closerToHead) ? iterator->next : iterator->prev;
 	}
+
+	//Update prev and next pointers for neigboring nodes of the removed node
+	iterator->next->prev = iterator->prev;
+	iterator->prev->next = iterator->next;
 
 	//deconstruct the node
 	type *typePtr = iterator->data;
@@ -180,3 +221,60 @@ type * linkedList<type>::removeAt(int index)
 	count--;
 	return typePtr;
 }
+
+
+template <typename type>
+bool linkedList<type>::insert(int index, type &e)
+{
+	Node node;
+	int offset;
+
+	//find out if closer to the head or tail
+	bool closerToHead = (index < count / 2);
+	if (closerToHead)
+	{
+		if (!root){
+			node.data = e;
+			root = &node;
+			count++;
+			return true;
+		}
+		iterator = root;
+		offset = index;
+	}
+	else
+	{
+		if (!tail)
+		{
+			if (!root)
+			{
+				node.data = e;
+				root = &node;
+				count++;
+				return true;
+			}
+			node.data = e;
+			leaf = &node;
+			count++;
+			return true;
+		}
+		iterator = leaf;
+		offset = count - 1 - index;
+	}
+
+	for (int i = 0; i < offset; ++i)
+	{
+		iterator = (closerToHead) ? iterator->next : iterator->prev;
+	}
+
+	//Inserts a new node
+
+	node.data = e;
+	node.prev = iterator->prev;
+	node.next = iterator;
+	iterator->prev->next = &node;
+	iterator->prev = &node;
+
+	return true;
+}
+

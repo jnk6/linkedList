@@ -3,14 +3,15 @@ template <typename type> class linkedList{
 	public:
 							linkedList();
 		virtual				~linkedList();
-//		bool				add (type *object);
-		bool				addTail (type *object);
-		bool				addHead (type *object);
+		bool				add (type &object); 
+		bool				insert(int index, type &object);
+		bool				addTail (type &object);
+		bool				addHead (type &object);
 
-		type *				getHead ();
-		type *				getTail ();
+		type &				getHead ();
+		type &				getTail ();
 		int					getHeadPosition (); //?
-		type *				removeAt(int index);
+		type &				removeAt(int index);
 		int					getIterPosition (); 		
 
 		int					size();
@@ -18,7 +19,7 @@ template <typename type> class linkedList{
 
 	struct Node{
 
-		type				data;
+		type &				data;
 		Node *				prev;
 		Node *				next;
 
