@@ -3,12 +3,23 @@
 
 #include "stdafx.h"
 #include "linkedList.h"
-
+#include <stdexcept>
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+	linkedList<int> lList;
+
+	for (int i = 0; i < 10; ++i)
+	{
+		int & x = i;
+		lList.add(x);
+	}
+	
+	lList.getAt(2);
 	return 0;
 }
+
+
 
 //constructor
 template <typename type>
@@ -84,7 +95,7 @@ type & linkedList<type>::getHead()
 {
 	if (!(size() > 0))
 	{
-		return NULL;
+		throw std::runtime_error("empty list");
 	}
 	if (!root)
 	{
@@ -92,7 +103,7 @@ type & linkedList<type>::getHead()
 		if (!tail)
 		{
 			//if nothing is found, return NULL
-			return NULL;
+			throw std::runtime_error("empty list");
 		}
 		return tail->&data;
 	}
@@ -104,13 +115,13 @@ type & linkedList<type>::getTail()
 {
 	if (!(size() > 0))
 	{
-		return NULL;
+		throw std::runtime_error("empty list");
 	}
 	if (!tail)
 	{
 		//look for head
 		if (!head){
-			return NULL;
+			throw std::runtime_error("element not found");
 		}
 		return head->&data;
 	}
@@ -130,14 +141,14 @@ type & linkedList<type>::removeAt(int index)
 	//out of bounds
 	if (index >= count || index<0)
 	{
-		return NULL;
+		throw "out of bounds!";
 	}
 
 	//If I want to delete the head
 	if (!index)
 	{
 		if (!root)
-			return NULL;
+			throw "root does not exist!";
 
 		iterator = root;
 
@@ -154,18 +165,15 @@ type & linkedList<type>::removeAt(int index)
 
 		//deconstruct the node
 		type *typePtr = iterator->data;
-		delete iterator->data;
-		delete iterator->next;
-		delete iterator->prev;
-		count--;
+		deleteNode(iterator, 1);
 		return typePtr;
 	}
 
 	//If i want to delete the tail
 	if (!(size() - 1 - index))
 	{
-		if (!tail)
-			return NULL;
+		if (!leaf)
+			throw "tail does not exist!";
 
 		iterator = leaf;
 
@@ -182,10 +190,7 @@ type & linkedList<type>::removeAt(int index)
 
 		//deconstruct the node
 		type *typePtr = iterator->data;
-		delete iterator->data;
-		delete iterator->next;
-		delete iterator->prev;
-		count--;
+		deleteNode(iterator, 1);
 		return typePtr;
 	}
 
@@ -209,16 +214,11 @@ type & linkedList<type>::removeAt(int index)
 	}
 
 	//Update prev and next pointers for neigboring nodes of the removed node
-	iterator->next->prev = iterator->prev;
-	iterator->prev->next = iterator->next;
 
 	//deconstruct the node
 	type *typePtr = iterator->data;
-	delete iterator->data;
-	delete iterator->next;
-	delete iterator->prev;
+	deleteNode(iterator, 1);
 
-	count--;
 	return typePtr;
 }
 
@@ -226,7 +226,7 @@ type & linkedList<type>::removeAt(int index)
 template <typename type>
 bool linkedList<type>::insert(int index, type &e)
 {
-	Node node;
+	//Node node;
 	int offset;
 
 	//find out if closer to the head or tail
@@ -234,9 +234,7 @@ bool linkedList<type>::insert(int index, type &e)
 	if (closerToHead)
 	{
 		if (!root){
-			node.data = e;
-			root = &node;
-			count++;
+			root = createNode(e, NULL, NULL, 1);			
 			return true;
 		}
 		iterator = root;
@@ -244,18 +242,14 @@ bool linkedList<type>::insert(int index, type &e)
 	}
 	else
 	{
-		if (!tail)
+		if (!leaf)
 		{
 			if (!root)
 			{
-				node.data = e;
-				root = &node;
-				count++;
+				root = createNode(e, NULL, NULL, 1);
 				return true;
 			}
-			node.data = e;
-			leaf = &node;
-			count++;
+			leaf = createNode(e, NULL, NULL, 1);
 			return true;
 		}
 		iterator = leaf;
@@ -269,12 +263,86 @@ bool linkedList<type>::insert(int index, type &e)
 
 	//Inserts a new node
 
-	node.data = e;
-	node.prev = iterator->prev;
-	node.next = iterator;
-	iterator->prev->next = &node;
-	iterator->prev = &node;
-
+	createNode(e, iterator->prev, iterator, 1)
 	return true;
 }
 
+template <typename type> 
+type & linkedList<type>::getAt(int index)
+{
+
+	bool closerToHead = true;
+	int offset = index;
+	iterator = root;
+
+	//out of bounds
+	if (index <0 || index >(size() - 1))
+	{
+		throw "out of bounds!";
+	}
+	
+	//closer to tail
+	if (!(index < ((size() - 1) / 2)))
+	{
+		closerToHead = false;
+		offset = size() - 1 - index;
+		iterator = leaf;
+	}
+
+
+	for (int i = 0; i < offset; ++i)
+	{
+		iterator = (closerToHead) ? iterator->next : iterator->prev;
+	}
+
+	return *(iterator->data);
+}
+
+template <typename type>
+Node * linkedList<type>::createNode(type &e, Node *p, Node *n, int increment)
+{
+	Node node;
+	node.data = &e;
+	node.prev = p;
+	node.next = n;
+	count += increment;
+	updateNodeLinks(node, "create");
+	
+	return &node;
+}
+
+template <typename type>
+void linkedList<type>::deleteNode(Node *node, int decrement)
+{
+	delete node;
+	updateNodeLinks(node, "delete");
+	count -= decrement;
+}
+
+//takes care of linking when inserting or removing nodes
+template<typename type>
+void linkedList<type>::updateNodeLinks(Node *node, const char *str)
+{
+	if (!strcmp(str, "create"))
+	{
+		if (node->prev)
+		{
+			node->prev->next = node;
+		}
+		
+		if (node->next)
+		{
+			node->next->prev = node;
+		}
+	}
+
+	if (!strcmp(str, "delete"))
+	{
+		if (node->prev && node->next)
+		{
+			node->prev->next = node->next;
+			node->next->prev = node->prev;
+		}
+
+	}
+}

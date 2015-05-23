@@ -1,14 +1,22 @@
-﻿Build started 5/16/2015 8:01:12 PM.
+﻿Build started 5/23/2015 5:10:12 AM.
      1>Project "C:\Users\Jonathan\Documents\Visual Studio 2013\Projects\linkedlist\linkedlist\linkedlist.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\linkedlist.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt linkedlist.cpp
          linkedlist.cpp
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Jonathan\Documents\Visual Studio 2013\Projects\linkedlist\Debug\linkedlist.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Jonathan\Documents\Visual Studio 2013\Projects\linkedlist\Debug\linkedlist.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Jonathan\Documents\Visual Studio 2013\Projects\linkedlist\Debug\linkedlist.lib" /MACHINE:X86 Debug\linkedlist.obj
-         Debug\stdafx.obj
-         linkedlist.vcxproj -> C:\Users\Jonathan\Documents\Visual Studio 2013\Projects\linkedlist\Debug\linkedlist.exe
-     1>Done Building Project "C:\Users\Jonathan\Documents\Visual Studio 2013\Projects\linkedlist\linkedlist\linkedlist.vcxproj" (Build target(s)).
+     1>c:\users\jonathan\documents\visual studio 2013\projects\linkedlist\linkedlist\linkedlist.cpp(302): error C2143: syntax error : missing ';' before '*'
+     1>c:\users\jonathan\documents\visual studio 2013\projects\linkedlist\linkedlist\linkedlist.cpp(302): error C2065: 'type' : undeclared identifier
+     1>c:\users\jonathan\documents\visual studio 2013\projects\linkedlist\linkedlist\linkedlist.cpp(302): error C2923: 'linkedList' : 'type' is not a valid template type argument for parameter 'type'
+     1>c:\users\jonathan\documents\visual studio 2013\projects\linkedlist\linkedlist\linkedlist.cpp(302): error C2065: 'e' : undeclared identifier
+     1>c:\users\jonathan\documents\visual studio 2013\projects\linkedlist\linkedlist\linkedlist.cpp(302): error C2065: 'p' : undeclared identifier
+     1>c:\users\jonathan\documents\visual studio 2013\projects\linkedlist\linkedlist\linkedlist.cpp(302): error C2275: 'linkedList<type>::Node' : illegal use of this type as an expression
+     1>c:\users\jonathan\documents\visual studio 2013\projects\linkedlist\linkedlist\linkedlist.cpp(302): error C2065: 'n' : undeclared identifier
+     1>c:\users\jonathan\documents\visual studio 2013\projects\linkedlist\linkedlist\linkedlist.cpp(302): error C2062: type 'int' unexpected
+     1>c:\users\jonathan\documents\visual studio 2013\projects\linkedlist\linkedlist\linkedlist.cpp(315): error C2065: 'type' : undeclared identifier
+     1>c:\users\jonathan\documents\visual studio 2013\projects\linkedlist\linkedlist\linkedlist.cpp(315): error C2923: 'linkedList' : 'type' is not a valid template type argument for parameter 'type'
+     1>c:\users\jonathan\documents\visual studio 2013\projects\linkedlist\linkedlist\linkedlist.cpp(316): error C2143: syntax error : missing ';' before '{'
+     1>c:\users\jonathan\documents\visual studio 2013\projects\linkedlist\linkedlist\linkedlist.cpp(316): error C2447: '{' : missing function header (old-style formal list?)
+     1>Done Building Project "C:\Users\Jonathan\Documents\Visual Studio 2013\Projects\linkedlist\linkedlist\linkedlist.vcxproj" (Build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:08.62
+Time Elapsed 00:00:00.84
