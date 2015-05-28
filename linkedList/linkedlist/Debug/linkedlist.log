@@ -1,22 +1,16 @@
-﻿Build started 5/23/2015 5:10:12 AM.
+﻿Build started 5/23/2015 1:53:25 PM.
      1>Project "C:\Users\Jonathan\Documents\Visual Studio 2013\Projects\linkedlist\linkedlist\linkedlist.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\linkedlist.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt linkedlist.cpp
          linkedlist.cpp
-     1>c:\users\jonathan\documents\visual studio 2013\projects\linkedlist\linkedlist\linkedlist.cpp(302): error C2143: syntax error : missing ';' before '*'
-     1>c:\users\jonathan\documents\visual studio 2013\projects\linkedlist\linkedlist\linkedlist.cpp(302): error C2065: 'type' : undeclared identifier
-     1>c:\users\jonathan\documents\visual studio 2013\projects\linkedlist\linkedlist\linkedlist.cpp(302): error C2923: 'linkedList' : 'type' is not a valid template type argument for parameter 'type'
-     1>c:\users\jonathan\documents\visual studio 2013\projects\linkedlist\linkedlist\linkedlist.cpp(302): error C2065: 'e' : undeclared identifier
-     1>c:\users\jonathan\documents\visual studio 2013\projects\linkedlist\linkedlist\linkedlist.cpp(302): error C2065: 'p' : undeclared identifier
-     1>c:\users\jonathan\documents\visual studio 2013\projects\linkedlist\linkedlist\linkedlist.cpp(302): error C2275: 'linkedList<type>::Node' : illegal use of this type as an expression
-     1>c:\users\jonathan\documents\visual studio 2013\projects\linkedlist\linkedlist\linkedlist.cpp(302): error C2065: 'n' : undeclared identifier
-     1>c:\users\jonathan\documents\visual studio 2013\projects\linkedlist\linkedlist\linkedlist.cpp(302): error C2062: type 'int' unexpected
-     1>c:\users\jonathan\documents\visual studio 2013\projects\linkedlist\linkedlist\linkedlist.cpp(315): error C2065: 'type' : undeclared identifier
-     1>c:\users\jonathan\documents\visual studio 2013\projects\linkedlist\linkedlist\linkedlist.cpp(315): error C2923: 'linkedList' : 'type' is not a valid template type argument for parameter 'type'
-     1>c:\users\jonathan\documents\visual studio 2013\projects\linkedlist\linkedlist\linkedlist.cpp(316): error C2143: syntax error : missing ';' before '{'
-     1>c:\users\jonathan\documents\visual studio 2013\projects\linkedlist\linkedlist\linkedlist.cpp(316): error C2447: '{' : missing function header (old-style formal list?)
+     1>c:\users\jonathan\documents\visual studio 2013\projects\linkedlist\linkedlist\linkedlist.cpp(322): error C2244: 'linkedList<type>::deleteNode' : unable to match function definition to an existing declaration
+                 c:\users\jonathan\documents\visual studio 2013\projects\linkedlist\linkedlist\linkedlist.h(38) : see declaration of 'linkedList<type>::deleteNode'
+                 definition
+                 'void linkedList<type>::deleteNode(linkedList<type>::Node *,int)'
+                 existing declarations
+                 'void linkedList<type>::deleteNode(linkedList<type>::Node *,int)'
      1>Done Building Project "C:\Users\Jonathan\Documents\Visual Studio 2013\Projects\linkedlist\linkedlist\linkedlist.vcxproj" (Build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:00.84
+Time Elapsed 00:00:00.83

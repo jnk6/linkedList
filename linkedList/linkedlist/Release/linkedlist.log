@@ -1,18 +1,22 @@
-﻿Build started 5/22/2015 4:25:57 AM.
+﻿Build started 5/27/2015 8:36:48 PM.
      1>Project "C:\Users\Jonathan\Documents\Visual Studio 2013\Projects\linkedlist\linkedlist\linkedlist.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Release\linkedlist.pch" /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt linkedlist.cpp
          linkedlist.cpp
-     1>c:\users\jonathan\documents\visual studio 2013\projects\linkedlist\linkedlist\linkedList.h(9): error C2535: 'linkedList<type>::linkedList(void)' : member function already defined or declared
-                 c:\users\jonathan\documents\visual studio 2013\projects\linkedlist\linkedlist\linkedList.h(5) : see declaration of 'linkedList<type>::linkedList'
-                 c:\users\jonathan\documents\visual studio 2013\projects\linkedlist\linkedlist\linkedList.h(41) : see reference to class template instantiation 'linkedList<type>' being compiled
-     1>c:\users\jonathan\documents\visual studio 2013\projects\linkedlist\linkedlist\linkedList.h(9): error C2535: 'linkedList<int>::linkedList(void)' : member function already defined or declared
-                 c:\users\jonathan\documents\visual studio 2013\projects\linkedlist\linkedlist\linkedList.h(5) : see declaration of 'linkedList<int>::linkedList'
-                 linkedlist.cpp(10) : see reference to class template instantiation 'linkedList<int>' being compiled
-     1>linkedlist.cpp(28): error C2995: 'linkedList<type>::linkedList(void)' : function template has already been defined
-                 c:\users\jonathan\documents\visual studio 2013\projects\linkedlist\linkedlist\linkedList.h(5) : see declaration of 'linkedList<type>::linkedList'
+     1>linkedlist.cpp(308): error C2143: syntax error : missing ';' before '*'
+     1>linkedlist.cpp(308): error C2065: 'type' : undeclared identifier
+     1>linkedlist.cpp(308): error C2923: 'linkedList' : 'type' is not a valid template type argument for parameter 'type'
+     1>linkedlist.cpp(308): error C2065: 'e' : undeclared identifier
+     1>linkedlist.cpp(308): error C2065: 'p' : undeclared identifier
+     1>linkedlist.cpp(308): error C2275: 'linkedList<type>::Node' : illegal use of this type as an expression
+     1>linkedlist.cpp(308): error C2065: 'n' : undeclared identifier
+     1>linkedlist.cpp(308): error C2062: type 'int' unexpected
+     1>linkedlist.cpp(322): error C2065: 'type' : undeclared identifier
+     1>linkedlist.cpp(322): error C2923: 'linkedList' : 'type' is not a valid template type argument for parameter 'type'
+     1>linkedlist.cpp(323): error C2143: syntax error : missing ';' before '{'
+     1>linkedlist.cpp(323): error C2447: '{' : missing function header (old-style formal list?)
      1>Done Building Project "C:\Users\Jonathan\Documents\Visual Studio 2013\Projects\linkedlist\linkedlist\linkedlist.vcxproj" (Build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:00.76
+Time Elapsed 00:00:00.88

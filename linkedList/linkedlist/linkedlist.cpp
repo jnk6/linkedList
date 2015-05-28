@@ -91,11 +91,11 @@ bool linkedList<type> ::add(type &e)
 }
 
 template<typename type>
-type & linkedList<type>::getHead()
+type * linkedList<type>::getHead()
 {
 	if (!(size() > 0))
 	{
-		throw std::runtime_error("empty list");
+		throw "list is empty!";
 	}
 	if (!root)
 	{
@@ -103,25 +103,25 @@ type & linkedList<type>::getHead()
 		if (!tail)
 		{
 			//if nothing is found, return NULL
-			throw std::runtime_error("empty list");
+			throw "list is empty!";
 		}
-		return tail->&data;
+		return tail->data;
 	}
-	return root->&data;
+	return root->data;
 }
 
 template<typename type>
-type & linkedList<type>::getTail()
+type * linkedList<type>::getTail()
 {
 	if (!(size() > 0))
 	{
-		throw std::runtime_error("empty list");
+		throw "list is empty!";
 	}
 	if (!tail)
 	{
 		//look for head
 		if (!head){
-			throw std::runtime_error("element not found");
+			throw "head does not exist!";
 		}
 		return head->&data;
 	}
@@ -135,7 +135,7 @@ int linkedList<type>::size()
 }
 
 template<typename type>
-type & linkedList<type>::removeAt(int index)
+type * linkedList<type>::removeAt(int index)
 {
 
 	//out of bounds
@@ -263,12 +263,12 @@ bool linkedList<type>::insert(int index, type &e)
 
 	//Inserts a new node
 
-	createNode(e, iterator->prev, iterator, 1)
+	createNode(e, iterator->prev, iterator, 1);
 	return true;
 }
 
 template <typename type> 
-type & linkedList<type>::getAt(int index)
+type * linkedList<type>::getAt(int index)
 {
 
 	bool closerToHead = true;
@@ -295,11 +295,17 @@ type & linkedList<type>::getAt(int index)
 		iterator = (closerToHead) ? iterator->next : iterator->prev;
 	}
 
-	return *(iterator->data);
+	if (!iterator->data)
+	{
+		throw "data of element does not exist! please check to see if it is NULL";
+	}
+	type *ptr = iterator->data;
+	return ptr;
 }
 
+
 template <typename type>
-Node * linkedList<type>::createNode(type &e, Node *p, Node *n, int increment)
+Node* linkedList<type>::createNode(type &e, Node *p, Node *n, int increment)
 {
 	Node node;
 	node.data = &e;
@@ -310,6 +316,7 @@ Node * linkedList<type>::createNode(type &e, Node *p, Node *n, int increment)
 	
 	return &node;
 }
+
 
 template <typename type>
 void linkedList<type>::deleteNode(Node *node, int decrement)
